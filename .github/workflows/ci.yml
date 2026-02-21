@@ -58,7 +58,6 @@ jobs:
           dvc push
 
       - name: Publish CML report
-        if: github.event_name == 'pull_request'
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -67,4 +66,4 @@ jobs:
           echo "" >> report.md
           echo "## Confusion Matrix" >> report.md
           echo "![](./conf_matrix.png)" >> report.md
-          cml comment create --target=pr report.md
+          cml comment create --pr report.md
